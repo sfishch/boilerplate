@@ -1,0 +1,60 @@
+/* Mixins
+ * -------------------- */
+
+@mixin opacity($x: 0.5, $y: 60) {
+	opacity: $x;
+    filter: alpha(opacity=$y);
+}
+
+@mixin boxShadow($x: 5px, $y: 5px, $blur: 5px, $spread: 0px, $color: #000) {
+	-webkit-box-shadow: $x $y $blur $spread $color;
+	-moz-box-shadow: $x $y $blur $spread $color;
+	-ms-box-shadow: $x $y $blur $spread $color;
+	-o-box-shadow: $x $y $blur $spread $color;
+	box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin filter-grayscale($val: 100%) {
+	filter: grayscale($val);
+	-webkit-filter: grayscale($val);
+	-moz-filter: grayscale($val);
+	-o-filter: grayscale($val);
+	-ms-filter: grayscale($val);	
+}
+
+
+/* Typo
+ * -------------------- */
+
+@mixin font-smoothing() {
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 	
+}
+
+@mixin font-helvetica() {
+	font-family:'HelveticaNeueW01-55Roma', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@mixin typo($color: $color-grey, $size: $font-size-default, $lineHeight: 1.375) {
+	color: $color;
+	@include font-helvetica();
+	@include font-size($size);
+	line-height: $lineHeight;
+}
+
+@mixin font-size($size: 1.6) {
+	font-size: ($size * 10) + px;
+}
+
+
+/* Media queries
+ * -------------------- */
+
+@mixin mediaTablet {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}   
