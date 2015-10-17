@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 		        files: [{
 		            expand: true,
 		            cwd: 'source/img/',
-		            src: ['**/*.{png,jpg,gif}'],
+		            src: ['**/*.{png,jpg,gif,jpeg}'],
 		            dest: 'build/assets/img/'
 		        }]
 		    }
@@ -57,38 +57,40 @@ module.exports = function(grunt) {
 					dest: 'build/assets/img/'
 				}]
 			}
-		},		
+		},
 
+		jshint: {
+			all: ['Gruntfile.js', 'source/js/script.js']
+		},
+		
 		watch: {
 			options: {
 				livereload: false,
     		},			
 		    scripts: {
 		        files: ['source/js/**/*.js'],
-		        tasks: ['concat', 'uglify'],
-		        options: {},
+		        tasks: ['jshint', 'concat', 'uglify']
 		    },
 			css: {
 			    files: ['source/sass/**/*.scss'],
-			    tasks: ['compass'],
-			    options: {}
+			    tasks: ['compass']
 			},
 			svgo: {
 			    files: ['source/img/**/*.svg'],
-			    tasks: ['svgo'],
-			    options: {}				
+			    tasks: ['svgo']
 			}		     
 		}		       
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    //grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-svgo');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	
     // grunt default task
-    grunt.registerTask('default', ['concat', 'uglify', 'compass', 'svgo']);
-
+    grunt.registerTask('default', ['concat', 'uglify', 'compass', 'svgo', 'imagemin', 'jshint']);
+    
 };
