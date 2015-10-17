@@ -6,18 +6,18 @@ module.exports = function(grunt) {
         concat: {
 		    dist: {
 		        src: [
-		            'source/js/vendor/jquery-1.11.3.min.js',
-		            'source/js/plugins/*.js', // load all files from the plugins folder
-		            'source/js/script.js'
+		            '<%= pkg.sourceDir %>/js/vendor/jquery-1.11.3.min.js',
+		            '<%= pkg.sourceDir %>/js/plugins/*.js', // load all files from the plugins folder
+		            '<%= pkg.sourceDir %>/js/script.js'
 		        ],
-			    dest: 'build/assets/js/script.js',
+			    dest: '<%= pkg.buildDir %>/js/script.js',
 		    }
         },
 		
 		uglify: {
 			build: {
-				src: 'build/assets/js/script.js',
-				dest: 'build/assets/js/script.js'
+				src: '<%= pkg.buildDir %>/js/script.js',
+				dest: '<%= pkg.buildDir %>/js/script.js'
     		}
 		},
         
@@ -25,9 +25,9 @@ module.exports = function(grunt) {
 		    dynamic: {
 		        files: [{
 		            expand: true,
-		            cwd: 'source/img/',
+		            cwd: '<%= pkg.sourceDir %>/img/',
 		            src: ['**/*.{png,jpg,gif,jpeg}'],
-		            dest: 'build/assets/img/'
+		            dest: '<%= pkg.buildDir %>/img/'
 		        }]
 		    }
 		},
@@ -35,32 +35,34 @@ module.exports = function(grunt) {
 		compass: {
 			dist: {
 				options: {
-					sassDir: 'source/sass',
-					cssDir: 'build/assets/css',
-					environment: 'production'
+					sassDir: '<%= pkg.sourceDir %>/sass',
+					cssDir: '<%= pkg.buildDir %>/css',
+					environment: 'production',
+					outputStyle: 'compressed'
 				}
 			},
 			dev: {
 				options: {
-					sassDir: 'source/sass',
-					cssDir: 'build/assets/css'
+					sassDir: '<%= pkg.sourceDir %>/sass',
+					cssDir: '<%= pkg.buildDir %>/css',
+					outputStyle: 'expanded'
 				}
-			}
+			},
 		},
 
 		svgo: {
 			dynamic: {
 				files: [{
 					expand: true,
-					cwd: 'source/img/', 
+					cwd: '<%= pkg.sourceDir %>/img/', 
 					src: ['**/*.svg'],
-					dest: 'build/assets/img/'
+					dest: '<%= pkg.buildDir %>/img/'
 				}]
 			}
 		},
 
 		jshint: {
-			all: ['Gruntfile.js', 'source/js/script.js']
+			all: ['Gruntfile.js', '<%= pkg.sourceDir %>/js/script.js']
 		},
 		
 		watch: {
@@ -68,17 +70,21 @@ module.exports = function(grunt) {
 				livereload: false,
     		},			
 		    scripts: {
-		        files: ['source/js/**/*.js'],
-		        tasks: ['jshint', 'concat', 'uglify']
+		        files: ['<%= pkg.sourceDir %>/js/**/*.js'],
+		        tasks: ['jshint', 'concat']
 		    },
 			css: {
-			    files: ['source/sass/**/*.scss'],
-			    tasks: ['compass']
+			    files: ['<%= pkg.sourceDir %>/sass/**/*.scss'],
+			    tasks: ['compass:dev']
 			},
 			svgo: {
-			    files: ['source/img/**/*.svg'],
+			    files: ['<%= pkg.sourceDir %>/img/**/*.svg'],
 			    tasks: ['svgo']
-			}		     
+			},
+			imagemin: {
+			    files: ['<%= pkg.sourceDir %>/img/**/*.{png,jpg,gif,jpeg}'],
+			    tasks: ['imagemin']
+			}					     
 		}		       
     });
 
@@ -90,7 +96,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-svgo');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	
-    // grunt default task
-    grunt.registerTask('default', ['concat', 'uglify', 'compass', 'svgo', 'imagemin', 'jshint']);
+    // grunt default task (= development)
+    grunt.registerTask('default', ['concat', 'compass:dev', 'svgo', 'imagemin', 'jshint']);
+    
+    // grunt build task
+    grunt.registerTask('build', ['concat', 'uglify', 'compass:dist', 'svgo', 'imagemin', 'jshint']);
     
 };

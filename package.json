@@ -1,6 +1,9 @@
 {
   "name": "sfishch-dummy",
   "version": "0.1.0",
+  "private": true,
+  "sourceDir": "source",
+  "buildDir": "build/assets",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-compass": "^1.0.4",
