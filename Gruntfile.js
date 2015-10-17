@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-    // 1. All configuration goes here 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -49,6 +48,17 @@ module.exports = function(grunt) {
 			}
 		},
 
+		svgo: {
+			dynamic: {
+				files: [{
+					expand: true,
+					cwd: 'source/img/', 
+					src: ['**/*.svg'],
+					dest: 'build/assets/img/'
+				}]
+			}
+		},		
+
 		watch: {
 			options: {
 				livereload: false,
@@ -62,19 +72,23 @@ module.exports = function(grunt) {
 			    files: ['source/sass/**/*.scss'],
 			    tasks: ['compass'],
 			    options: {}
+			},
+			svgo: {
+			    files: ['source/img/**/*.svg'],
+			    tasks: ['svgo'],
+			    options: {}				
 			}		     
 		}		       
-
     });
 
-    // 3. Where we tell Grunt we plan to use this plug-in.
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     //grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
-
-    // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['concat', 'uglify', 'compass']);
+	grunt.loadNpmTasks('grunt-svgo');
+	
+    // grunt default task
+    grunt.registerTask('default', ['concat', 'uglify', 'compass', 'svgo']);
 
 };
