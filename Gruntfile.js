@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 		    dist: {
 		        src: [
 		            'source/js/vendor/jquery-1.11.3.min.js',
-		            'source/js/plugins/*.js',
+		            'source/js/plugins/*.js', // load all files from the plugins folder
 		            'source/js/script.js'
 		        ],
 			    dest: 'build/assets/js/script.js',
