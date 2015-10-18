@@ -1,12 +1,39 @@
-/* Mixins
- * -------------------- */
+/**
+ * Mixins
+ * -----------------------------------------------------------------------------
+ */
 
+
+/**
+ * Cross browser opacity
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      img {
+ *          @include opacity(1,100);
+ *      }
+ *
+ */
+ 
 @mixin opacity($x: 0.5, $y: 60) {
 	opacity: $x;
     filter: alpha(opacity=$y);
 }
 
-@mixin boxShadow($x: 5px, $y: 5px, $blur: 5px, $spread: 0px, $color: #000) {
+/**
+ * Set box shadow
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      div {
+ *          @include box-shadow(values);
+ *      }
+ *
+ */
+ 
+@mixin box-shadow($x: 5px, $y: 5px, $blur: 5px, $spread: 0px, $color: #000) {
 	-webkit-box-shadow: $x $y $blur $spread $color;
 	-moz-box-shadow: $x $y $blur $spread $color;
 	-ms-box-shadow: $x $y $blur $spread $color;
@@ -14,6 +41,18 @@
 	box-shadow: $x $y $blur $spread $color;
 }
 
+/**
+ * Grayscale an image
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      img {
+ *          @include filter-grayscale(value);
+ *      }
+ *
+ */
+ 
 @mixin filter-grayscale($val: 100%) {
 	filter: grayscale($val);
 	-webkit-filter: grayscale($val);
@@ -22,39 +61,155 @@
 	-ms-filter: grayscale($val);	
 }
 
-
-/* Typo
- * -------------------- */
+/**
+ * Add font smoothing
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-smoothing();
+ *      }
+ *
+ */
 
 @mixin font-smoothing() {
 	-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; 	
 }
 
-@mixin font-helvetica() {
-	font-family:'HelveticaNeueW01-55Roma', Helvetica, Arial, sans-serif;
+/**
+ * Define the font family
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-default;
+ *      }
+ *
+ */
+ 
+@mixin font-default() {
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
 	font-style: normal;
 	font-stretch: normal;
 }
 
-@mixin typo($color: $color-grey, $size: $font-size-default, $lineHeight: 1.375) {
-	color: $color;
-	@include font-helvetica();
-	@include font-size($size);
-	line-height: $lineHeight;
-}
 
+/**
+ * Define the font size
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-size(1.6);
+ *      }
+ *
+ */
+ 
 @mixin font-size($size: 1.6) {
 	font-size: ($size * 10) + px;
 }
 
 
-/* Media queries
- * -------------------- */
+/**
+ * Visually hide an element
+ * -----------------------------------------------------------------------------
+ * This placeholder selector will visually hide an element while
+ * still make it accessible for screenreaders.
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @extend %visually-hidden;
+ *      }
+ *
+ */
 
-@mixin mediaTablet {
-	@media screen and (min-width: 768px) {
-		@content;
-	}
-}   
+%visually-hidden,
+.visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+/**
+ * Clearfix
+ * -----------------------------------------------------------------------------
+ * A solid clearfix by Nicolas Gallagher.
+ * Source: (http://nicolasgallagher.com/micro-clearfix-hack/)
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @extend %clearfix;
+ *      }
+ *
+ */
+ 
+%clearfix,
+.clearfix {
+    *zoom: 1;
+
+    &:before {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+
+/**
+ * Media Queries
+ * -----------------------------------------------------------------------------
+ * A simple mixin for using media queries. Change the values to
+ * fit your sites needs.
+ * 
+ * Usage:
+ *
+ *      header {
+ *          @include bp-small() {
+ *              display: none;
+ *          }
+ *          @include bp-huge() {
+ *              display: block;
+ *          }
+ *      }
+ */
+
+@mixin bp-small {
+    @media only screen and (min-width: 20em) {
+        @content;
+    }
+}
+
+@mixin bp-medium {
+    @media only screen and (min-width: 40em) {
+        @content;
+    }
+}
+
+@mixin bp-large {
+    @media only screen and (min-width: 60em) {
+        @content;
+    }
+}
+
+@mixin bp-xl {
+    @media only screen and (min-width: 80em) {
+        @content;
+    }
+}  
