@@ -15,10 +15,10 @@
 @import 'helpers/animate';
 
 
-/* Helpers
+/* Plugins
  * -------------------- */
  
-// @import 'libs/[insert-library]';
+@import 'plugins/fancybox';
 
 
 /* Layout
@@ -30,10 +30,10 @@
 @import 'layout/footer';
 
 
-/* Content styles
+/* Views
  * -------------------- */
  
-@import 'content';
+@import 'views/content';
  
 
 /* Components

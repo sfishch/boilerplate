@@ -3,8 +3,7 @@
 	//--------------------
 	//  External Scripts
 	//--------------------
-
-
+			
 	// ReplaceSvg
 	var ReplaceSvg = {
 
@@ -36,7 +35,7 @@
 		if (!Modernizr.svg) {
 			ReplaceSvg.init();
 		}
-		
+
 	});
 
 })(jQuery);
