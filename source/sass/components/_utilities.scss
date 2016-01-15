@@ -1,0 +1,23 @@
+/**
+ * Utilities
+ * -----------------------------------------------------------------------------
+ */
+ 
+em, 
+address {
+	font-style: normal;
+}
+
+i,
+em {}
+
+b,
+strong {}
+
+p {
+	margin: 0px 0px $gutter--double 0px;
+	
+	&:last-child {
+		margin-bottom: 0;
+	}
+}

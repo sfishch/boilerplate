@@ -8,6 +8,7 @@ module.exports = function(grunt) {
 		        src: [
 		            '<%= pkg.sourceDir %>/js/vendor/jquery-1.11.3.min.js',
 		            '<%= pkg.sourceDir %>/js/plugins/*.js', // load all files from the plugins folder
+		            '<%= pkg.sourceDir %>/js/maps.js',
 		            '<%= pkg.sourceDir %>/js/script.js'
 		        ],
 			    dest: '<%= pkg.buildDir %>/js/script.js',
@@ -19,17 +20,6 @@ module.exports = function(grunt) {
 				src: '<%= pkg.buildDir %>/js/script.js',
 				dest: '<%= pkg.buildDir %>/js/script.js'
     		}
-		},
-        
-		imagemin: {
-		    dynamic: {
-		        files: [{
-		            expand: true,
-		            cwd: '<%= pkg.sourceDir %>/img/',
-		            src: ['**/*.{png,jpg,gif,jpeg}'],
-		            dest: '<%= pkg.buildDir %>/img/'
-		        }]
-		    }
 		},
 
 		compass: {
@@ -71,7 +61,7 @@ module.exports = function(grunt) {
     		},			
 		    scripts: {
 		        files: ['<%= pkg.sourceDir %>/js/**/*.js'],
-		        tasks: ['jshint', 'concat']
+		        tasks: ['jshint', 'concat', 'uglify']
 		    },
 			css: {
 			    files: ['<%= pkg.sourceDir %>/sass/**/*.scss'],
@@ -80,11 +70,7 @@ module.exports = function(grunt) {
 			svgo: {
 			    files: ['<%= pkg.sourceDir %>/img/**/*.svg'],
 			    tasks: ['svgo']
-			},
-			imagemin: {
-			    files: ['<%= pkg.sourceDir %>/img/**/*.{png,jpg,gif,jpeg}'],
-			    tasks: ['imagemin']
-			}					     
+			}				     
 		}		       
     });
 
@@ -97,9 +83,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	
     // grunt default task (= development)
-    grunt.registerTask('default', ['concat', 'compass:dev', 'svgo', 'imagemin', 'jshint']);
+    grunt.registerTask('default', ['concat', 'uglify', 'compass:dist', 'svgo', 'jshint']);
     
     // grunt build task
-    grunt.registerTask('build', ['concat', 'uglify', 'compass:dist', 'svgo', 'imagemin', 'jshint']);
+    grunt.registerTask('build', ['concat', 'uglify', 'compass:dist', 'svgo', 'jshint']);
     
 };

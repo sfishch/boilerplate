@@ -7,24 +7,31 @@
 /* Colors
  * -------------------- */
 
-$color--black: #000000;
-$color--white: #ffffff;
-$color--link:  #e3e3e3;
+$color--black: 		#000000;
+$color--white: 		#ffffff;
 
 
 /* Gutter
  * -------------------- */
 
-$gutter: 		 10px;
-$gutter--double: 20px;
-$gutter--triple: 30px;
+$gutter--half:		 5px;
+$gutter: 		    10px;
+$gutter--double:    20px;
+$gutter--triple:    30px;
+$gutter--quadruple: 40px;
+
+
+/* Paths
+ * -------------------- */
+ 
+$url-images: '../img/';
+$url-icons:  '../img/icons/';
 
 
 /* Font sizes
  * -------------------- */
 
-$font-size--small:   1.2;
-$font-size--base:    1.6;
-$font-size--medium:  2.0;
-$font-size--large:   2.4;
-
+$font-size--small:  1.2;
+$font-size--base:   1.6;
+$font-size--medium: 2;
+$font-size--large:  2.4;

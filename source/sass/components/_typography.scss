@@ -1,0 +1,78 @@
+/**
+ * Typography
+ * -----------------------------------------------------------------------------
+ */
+ 
+ 
+/**
+ * Add font smoothing
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-smoothing();
+ *      }
+ *
+ */
+
+@mixin font-smoothing() {
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 	
+}
+
+
+/**
+ * Font: Unit-Regular
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-regular();
+ *      }
+ *
+ */
+ 
+@mixin font-regular() {
+	font-family: 'Insert-Webfont', Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+
+/**
+ * Legacy font: Helvetica
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-legacy();
+ *      }
+ *
+ */
+ 
+@mixin font-legacy() {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+/**
+ * Define the font size
+ * -----------------------------------------------------------------------------
+ * 
+ * Usage:
+ *
+ *      p {
+ *          @include font-size(1.6);
+ *      }
+ *
+ */
+ 
+@mixin font-size($size: 1.6) {
+	font-size: ($size * 10) + px;
+}

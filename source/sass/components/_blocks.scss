@@ -1,4 +1,50 @@
 /**
+ * The Teaser Block
+ * -----------------------------------------------------------------------------
+ *
+ * Usage:
+ *
+ *      <figure class="teaser-block">
+ *          <a href="http://some-url-com">
+ *              <img src="http://placehold.it/50x50" alt="" width="" height="">
+ *			    <figcaption>
+ *					<h2>Title</h2>
+ *					<p>Text Text Text</p>				
+ *				</figcaption>
+ *          </a>
+ *      </figure>
+ */
+
+%teaser-block,
+.teaser-block {
+	
+	a {
+		display: block;
+		height: 100%;
+		position: relative;
+		width: 100%;
+	}
+	
+	img {
+		display: block;
+		height: auto;
+		width: 100%;
+	}
+	
+	figcaption {
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+}
+
+
+
+
+/**
  * The Media Block
  * -----------------------------------------------------------------------------
  * Courtesy of Nicole Sullivan. Demo: http://goo.gl/sCZKxk

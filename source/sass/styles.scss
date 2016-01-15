@@ -15,10 +15,18 @@
 @import 'helpers/animate';
 
 
-/* Plugins
+/* Components
  * -------------------- */
- 
-@import 'plugins/fancybox';
+@import 'components/typography'; 
+@import 'components/blocks';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/grid';
+@import 'components/headings';
+@import 'components/icons';
+@import 'components/lists';
+@import 'components/tables';
+@import 'components/utilities';
 
 
 /* Layout
@@ -30,19 +38,15 @@
 @import 'layout/footer';
 
 
+/* Plugins
+ * -------------------- */
+
+
+
 /* Views
  * -------------------- */
  
 @import 'views/content';
+@import 'views/legacy';
  
 
-/* Components
- * -------------------- */
- 
-@import 'components/blocks';
-@import 'components/buttons';
-@import 'components/forms';
-@import 'components/grid';
-@import 'components/headings';
-@import 'components/lists';
-@import 'components/tables';
