@@ -26,10 +26,30 @@
 
 
 /**
- *  Target IE8
+ *  Infobox for old IE's
  * -----------------------------------------------------------------------------
  */
  
 .lt-ie9 {
 
+	.browser-outdated {
+		background-color: red;
+		color: white;
+		padding: 20px 40px;
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		z-index: 99999;
+		
+		a {
+			color: white;
+			display: block;
+			margin-bottom: 20px;
+			text-decoration: underline;
+			
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
 }
